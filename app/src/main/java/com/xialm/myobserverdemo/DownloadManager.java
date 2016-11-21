@@ -23,7 +23,9 @@ public class DownloadManager {
 
     // 1.声明一个观察者-接口
     public interface DownloadObserver {
-        void update();
+        void update(long currentSize, long totalSize);
+//        void updateState(int state);  // 比如下载进度: 0.暂停 1.正在下载 2.下载完成
+        // 可以在这里做一些自定义的操作
     }
 
     // 3.添加一个注册观察者的方法
@@ -37,10 +39,10 @@ public class DownloadManager {
     }
 
     // 4.添加一个通知所有观察者的方法
-    public void notifyObservers() {
+    public void notifyObservers(long currentSize, long totalSize) {
         for (int i = 0; i < observers.size(); i++) {
             DownloadObserver downloadObserver = observers.get(i);
-            downloadObserver.update();
+            downloadObserver.update(currentSize, totalSize);
         }
     }
 }

@@ -6,9 +6,8 @@ package com.xialm.myobserverdemo;
  */
 
 public class ItemView implements DownloadManager.DownloadObserver {
-
     @Override
-    public void update() {
-        System.out.println("观察者1--ItemView:收到了消息--自定义");
+    public void update(long currentSize, long totalSize) {
+        System.out.println("观察者1--ItemView:收到了消息--自定义"+">>currentSize:"+currentSize+">>totalSize:"+totalSize);
     }
 }
